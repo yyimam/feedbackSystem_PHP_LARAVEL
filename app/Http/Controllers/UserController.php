@@ -38,7 +38,7 @@ class UserController extends Controller
             return redirect('/')->with('status', 'Wrong Credentials');
         }
 
-        // FOR PLAIN TEXT PASSWORD (REPLACE THIS WITH COMMENTED HASH PASSWORD CODE COMMENTED ABOVE(line 31-34) IF U'RE USING HASH)
+        // FOR PLAIN TEXT PASSWORD (REPLACE THIS WITH COMMENTED HASH PASSWORD CODE ABOVE(line 31-34) IF U'RE USING HASH)
         if ($user->password != $request->password) {
             return redirect('/')->with('status', 'Wrong Credentials');
         }

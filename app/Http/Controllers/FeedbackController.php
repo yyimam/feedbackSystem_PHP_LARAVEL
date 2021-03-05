@@ -35,28 +35,39 @@ class FeedbackController extends Controller
             'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
-            // Adding data
-            $feedback = new Feedback;
-            $feedback->user_id = $request->session()->get('id');
-            $feedback->subject = $request->subject;
-            $feedback->description = $request->description;
+        // Checking if user is able to Add or not
+        $checkuser = User::where('id',$request->session()->get('id'))->select("status")->first();
+            if ($checkuser->status == "0")
+            {    
+                // Adding data
+                $feedback = new Feedback;
+                $feedback->user_id = $request->session()->get('id');
+                $feedback->subject = $request->subject;
+                $feedback->description = $request->description;
 
-            // Preparing Image for insertion
-            if ($request->hasFile('img')) {
-                $imgname = time().'.'.$request->img->extension(); 
-                $request->img->move(public_path('images'), $imgname);
+                // Preparing Image for insertion
+                if ($request->hasFile('img')) {
+                    $imgname = time().'.'.$request->img->extension(); 
+                    $request->img->move(public_path('images'), $imgname);
+                }
+                $feedback->img = $imgname;
+
+                // Inserting
+                $check = $feedback->save();
+
+                // Returns a success or an error message
+                if ($check) {
+                    return redirect('/main')->with('datasaved', 'Inserted Successfully');
+                } else {
+                    return redirect('/main')->with('datafailed', 'Something Went Wrong');
+                }
             }
-            $feedback->img = $imgname;
-
-            // Inserting
-            $check = $feedback->save();
-
-            // Returns a success or an error message
-            if ($check) {
-                return redirect('/main')->with('datasaved', 'Inserted Successfully');
-            } else {
-                return redirect('/main')->with('datafailed', 'Something Went Wrong');
+            else{
+                $request->session()->pull('status', 'default');
+                $request->session()->put('status', $checkuser->status);
+                return redirect('/main');
             }
+
     }
     // Updtating User Status (ADMIN)
     public function update($id, Request $request)
