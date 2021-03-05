@@ -7,21 +7,23 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-GENERAL:
-# feedbacksystem has 2 roles, One is admin and the otherone is user
-# User can give a feedback and view what admin replied to that specific message
-# Admin can see those feedbacks, reply to them, and can restrict or unrestrict that user from giving feedback
+# GENERAL:
+ feedbacksystem has 2 roles, One is admin and the otherone is user
+ User can give a feedback and view what admin replied to that specific message
+ Admin can see those feedbacks, reply to them, and can restrict or unrestrict that user from giving feedback
 
-TECHNICAL:
-# To Create Database Tables:
- Command: php artisan migrate
+# TECHNICAL:
+ To Create Database Tables:
+### Command: 
+ php artisan migrate
 
  To Populate Database With Data:
- Command: php artisan db:seed
+### Command: 
+ php artisan db:seed
 
-# Note: By running this command you will have 2 users data:
+### Note: By running this command you will have 2 users data:
 
-## (email: admin@gmail.com, password: admin123, role:ADMIN), 
-## (email: alex@gmail.com, password: alex1234, role:USER)
+ (email: admin@gmail.com, password: admin123, role:ADMIN), 
+ (email: alex@gmail.com, password: alex1234, role:USER)
 
 
