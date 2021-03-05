@@ -22,7 +22,7 @@
 
 ### Note: By running this command you will have 2 users data:
 
- (email: admin@gmail.com, password: admin123, role:ADMIN) 
- (email: alex@gmail.com, password: alex1234, role:USER)
+ **email**: admin@gmail.com, **password**: admin123, role:ADMIN.
+ **email**: alex@gmail.com, **password**: alex1234, role:USER.
 
 
